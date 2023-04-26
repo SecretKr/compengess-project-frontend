@@ -1,17 +1,34 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>MyCourseville API Login Page</title>
-        <link rel="stylesheet" href="style.css"></link>
-        <script src="script_cv.js" defer></script>
-    </head>
-    <body>
-        <section>
-            <header>
-                <h1 id="app-name">MyCourseville API Login Page Group <span id="group-id"></span></h1>
-            </header>
-        </section>
+
+<head>
+    <meta charset="UTF-8">
+    <title>MCV Assignmens list</title>
+    <link rel="stylesheet" href="style2.css"></link>
+    <script src="script2.js" defer></script>
+</head>
+
+<body>
+    <div class="home-page" id="home-page-id">
+        <div class="head">
+            <img src="./img/cv-logo.png">
+            <h2 id="user-profile">Name: Mr.A</h2>
+            <button onclick=logout(); class="button">Logout</button>
+        </div>
+        <div class="body">
+            <div class="assignments-pinned" id="assignments-pinned">
+                <h1>Pinned</h1>
+                <div class="assignments-list" id="asmng-pinned">
+                </div>
+            </div>
+            <div class="assignments-container active" id="assignments-container">
+                <h1>All Assignments</h1>
+                <div class="assignments-list" id="asmng">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="login-page active" id="login-page-id">
         <section>
             <header>
                 <h2 class="section-title description">Please press the login button to proceed to MyCourseville API Home Page</h2>
@@ -21,11 +38,51 @@
         <section class="section-center">
             <button class="button login-button" onclick=authorizeApplication()>Login</button>
         </section>
-        <section class="section-center">
-            <button class="button change-page-button" onclick="window.location.href='index.html'">Go to รายการฝากซื้อ</button>
+    </div>
+
+
+    <!--
+    <div>
+        <section class="section-right">
+            <button class="button logout-button" onclick=logout()>Logout</button>
         </section>
-        <section class="section-credit">
-            &#169; 2110221 Computer Engineering Essentials (2022/2) &#169;
+        <section>
+            <header>
+                <h1 id="app-name">{check()}</h1>
+            </header>
         </section>
-    </body>
+        <section>
+            <h2 class="section-title">1. Profile Section</h2>
+            <p class="info"> Name-Surname (English) : <span id="eng-name-info"></span></br>
+                Name-Surname (Thai) : <span id="thai-name-info"></span></p>
+        </section>
+        <section>
+            <h2 class="section-title">courses</h2>
+            <table>
+                <tbody id="courses"></tbody>
+            </table>
+        </section>
+        <section>
+            <table class="main-table">
+                <thead>
+                    <tr id="main-table-head">
+                        <th>Id</th>
+                        <th>Title</th>
+                    </tr>
+                </thead>
+                <tbody id="main-table-body">
+                    <tr id=0>
+                        <td>...</td>
+                        <td>...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+    <div class="section-credit">
+        &#169; 2110221 Computer Engineering Essentials (2022/2) &#169;
+    </div>
+-->
+</body>
+
 </html>

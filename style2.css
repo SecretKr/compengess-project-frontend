@@ -1,0 +1,238 @@
+@import url("https://fonts.googleapis.com/css2?family=Mitr:wght@200;400;600&display=swap");
+body {
+  font-family: "Mitr", sans-serif;
+  background-color: #222;
+  margin: 0;
+  color: #eee;
+}
+
+.button {
+  color: #eee;
+  background-color: #555;
+  border: none;
+  border-radius: 0.4rem;
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+}
+
+.button:hover {
+  background-color: #444;
+}
+
+.home-page {
+  display: none;
+}
+
+.home-page.active {
+  display: block;
+}
+
+.login-page {
+  font-size: 1.6rem;
+  width: 80%;
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  -webkit-transform: translate(-50%, -60%);
+          transform: translate(-50%, -60%);
+}
+
+.login-page.active {
+  display: block;
+}
+
+.assignments-pinned {
+  display: none;
+}
+
+.assignments-pinned.active {
+  display: inline-block;
+}
+
+.assignments-container {
+  display: none;
+}
+
+.assignments-container.active {
+  display: inline-block;
+}
+
+.head {
+  position: relative;
+  height: 3rem;
+  background-color: #333;
+  padding: 1rem;
+}
+
+.head img {
+  height: 3rem;
+}
+
+.head h2 {
+  position: absolute;
+  margin: 0;
+  font-size: 2rem;
+  right: 12rem;
+  top: 1rem;
+}
+
+.head button {
+  position: absolute;
+  top: 1.5rem;
+  right: 2rem;
+  height: 2rem;
+}
+
+.body {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.body .assignments-pinned,
+.body .assignments-container {
+  text-align: left;
+  margin: 0;
+  padding: 1rem;
+  width: 50rem;
+}
+
+.body .assignments-pinned h1,
+.body .assignments-container h1 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.assignment {
+  display: block;
+  position: relative;
+  font-size: 1.5rem;
+  cursor: pointer;
+  height: 5rem;
+  background-color: #222;
+  border-radius: 1rem;
+  border-style: solid;
+  border-color: #018ADA;
+  border-width: 0.3rem;
+  margin: 1rem;
+}
+
+.assignment span {
+  position: absolute;
+  color: #eee;
+  font-size: 1.2rem;
+}
+
+.assignment .cname {
+  position: absolute;
+  color: #aaa;
+  font-size: 0.8rem;
+  top: 1rem;
+  left: 5rem;
+}
+
+.assignment .name {
+  top: 2.2rem;
+  left: 5rem;
+}
+
+.assignment .due-date {
+  top: 1.6rem;
+  right: 6rem;
+}
+
+.assignment .due-time {
+  top: 1.6rem;
+  right: 1.2rem;
+}
+
+.assignment input {
+  opacity: 0;
+}
+
+.assignment .checkmark {
+  position: absolute;
+  top: 1.3rem;
+  left: 1.3rem;
+  height: 2.4rem;
+  width: 2.4rem;
+  background-color: #aaa;
+  border-radius: 0.6rem;
+  border-style: solid;
+  border-color: #018ADA;
+  border-width: 0.3rem;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.assignment .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.assignment:hover input ~ .checkmark {
+  background-color: #555;
+}
+
+.assignment input:checked ~ .checkmark {
+  background-color: #FFA200;
+  border-color: #FFA200;
+}
+
+.assignment input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.assignment .checkmark:after {
+  left: 0.55rem;
+  top: 0.15rem;
+  width: 0.5rem;
+  height: 1rem;
+  border: solid white;
+  border-width: 0 0.3rem 0.3rem 0;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.assignments-pinned .assignment {
+  border-color: #FFA200;
+}
+
+section {
+  margin: 20px 0;
+}
+
+.section-title {
+  font-size: 1.25em;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.section-subtitle {
+  font-size: 1.1em;
+}
+
+.section-center {
+  text-align: center;
+}
+
+.description {
+  text-align: center;
+  color: #aaa;
+}
+
+.info {
+  font-size: 1em;
+}
+
+.login-button {
+  text-align: center;
+  width: 8rem;
+  height: 4rem;
+  font-size: 1.6rem;
+}
+/*# sourceMappingURL=style2.css.map */
