@@ -7,6 +7,7 @@ async function authorizeApplication() {
     //window.location.href = `http://${backendIPAddress}/courseville/auth_app`;
     await getAssignments()
     updateAssignments();
+    renderCalendar().then(renderCalendarAssignments());
     logged_in = true;
     document.getElementById("home-page-id").classList.add("active")
     document.getElementById("login-page-id").classList.remove("active")
@@ -87,31 +88,68 @@ currMonth = date.getMonth();
 const months = ["January", "February", "March", "April", "May", "June", "July",
                 "August", "September", "October", "November", "December"];
 
-const renderCalendar = () => {
+// const renderCalendar = () => {
+async function renderCalendar() {
     let firstDayofMonth = new Date(currYear, currMonth, 1).getDay(), // getting first day of month
     lastDateofMonth = new Date(currYear, currMonth + 1, 0).getDate(), // getting last date of month
     lastDayofMonth = new Date(currYear, currMonth, lastDateofMonth).getDay(), // getting last day of month
     lastDateofLastMonth = new Date(currYear, currMonth, 0).getDate(); // getting last date of previous month
     let liTag = "";
 
+    const lastMonth =  currMonth === 0 ? 11 : currMonth - 1; 
+    const nextMonth = currMonth === 11 ? 0 : currMonth + 1;
+
     for (let i = firstDayofMonth; i > 0; i--) { // creating li of previous month last days
-        liTag += `<li class="inactive">${lastDateofLastMonth - i + 1}</li>`;
+
+        const id_date = new Date(currYear, lastMonth, lastDateofLastMonth - i + 1);
+
+        liTag += `<li class="inactive">
+                    ${lastDateofLastMonth - i + 1}
+                    <ul id=${id_date.toISOString().split('T')[0]}></ul>
+                </li>`;
     }
 
     for (let i = 1; i <= lastDateofMonth; i++) { // creating li of all days of current month
         // adding active class to li if the current day, month, and year matched
+
         let isToday = i === date.getDate() && currMonth === new Date().getMonth() 
                      && currYear === new Date().getFullYear() ? "active" : "";
-        liTag += `<li class="${isToday}">${i}</li>`;
+
+        const id_date = new Date(currYear, currMonth, i);
+
+        liTag += `<li class="${isToday}">
+                    ${i}
+                    <ul id=${id_date.toISOString().split('T')[0]}></ul>
+                </li>`;
     }
 
     for (let i = lastDayofMonth; i < 6; i++) { // creating li of next month first days
-        liTag += `<li class="inactive">${i - lastDayofMonth + 1}</li>`
+
+        const id_date = new Date(currYear, nextMonth, i - lastDayofMonth + 1);
+
+        liTag += `<li class="inactive">
+                    ${i - lastDayofMonth + 1}
+                    <ul id=${id_date.toISOString().split('T')[0]}></ul>
+                </li>`
     }
     currentDate.innerText = `${months[currMonth]} ${currYear}`; // passing current mon and yr as currentDate text
+
     daysTag.innerHTML = liTag;
 }
-renderCalendar();
+
+function renderCalendarAssignments() {
+    // Add assignments
+    asmnt.forEach(item => {
+        // console.log(item.duedate, item.pinned);
+        // const isPinned = item.pinned ? "pinned" : "notPinned";
+        try {
+            document.getElementById(item.duedate).innerHTML += `<li>${item.title}</li>`;
+        }
+        catch(err) {}
+        
+    });
+}
+// renderCalendar();
 
 prevNextIcon.forEach(icon => { // getting prev and next icons
     icon.addEventListener("click", () => { // adding click event on both icons
@@ -126,7 +164,7 @@ prevNextIcon.forEach(icon => { // getting prev and next icons
         } else {
             date = new Date(); // pass the current date as date value
         }
-        renderCalendar(); // calling renderCalendar function
+        renderCalendar().then(renderCalendarAssignments()); // calling renderCalendar function
     });
 });
 
