@@ -40,6 +40,8 @@ async function getData() {
 }
 
 async function updateFilter() {
+    const loading_asmnt = document.getElementById("loading-asmnt");
+    loading_asmnt.classList.add("active");
     await getAssignmentFromDB();
     asmnt = []
     if (filterCourse == "000") {
@@ -52,6 +54,7 @@ async function updateFilter() {
         await getAssignments(filterCourse.split(":")[0], filterCourse.split(":")[1], true)
     }
     updateAssignments()
+    loading_asmnt.classList.remove("active");
 }
 
 function filterCourseListener() {
@@ -74,6 +77,10 @@ const updateAssignments = () => {
     asmnt_div.innerHTML = "";
     const pin_asmnt_div = document.getElementById("asmng-pinned");
     pin_asmnt_div.innerHTML = "";
+
+    asmnt.sort((a, b) => {
+        return b.duetime - a.duetime
+    })
 
     for (let i = 0; i < asmnt.length; i++) {
         if (asmnt[i].pinned) {
@@ -174,25 +181,27 @@ async function getCourses() {
         })
         .then((response) => response.json())
         .then(({ data }) => {
-            courses = data.student
+            courses_temp = data.student
+            courses = []
             console.log(data)
             let max_year = '0'
             let max_semester = 0
-            for (let i = 0; i < courses.length; i++) {
-                if (max_year < courses[i].year) {
-                    max_year = courses[i].year
+            for (let i = 0; i < courses_temp.length; i++) {
+                if (max_year < courses_temp[i].year) {
+                    max_year = courses_temp[i].year
                 }
-                if (max_semester < courses[i].semester) {
-                    max_semester = courses[i].semester
+                if (max_semester < courses_temp[i].semester) {
+                    max_semester = courses_temp[i].semester
                 }
             }
-            for (let i = 0; i < courses.length; i++) {
-                if (courses[i].year == max_year && courses[i].semester == max_semester) {
+            for (let i = 0; i < courses_temp.length; i++) {
+                if (courses_temp[i].year == max_year && courses_temp[i].semester == max_semester) {
                     coursesList.innerHTML += `
-                    <option value="${courses[i].cv_cid}:${courses[i].title}">
-                        ${courses[i].title}
+                    <option value="${courses_temp[i].cv_cid}:${courses_temp[i].title}">
+                        ${courses_temp[i].title}
                     </option>
                     `
+                    courses.push(courses_temp[i])
                 }
             }
         })

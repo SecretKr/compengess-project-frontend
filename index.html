@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>MCV Assignmens list</title>
+    <title>MCV Assignments List</title>
+    <link rel="icon" type="image/x-icon" href="/img/to-do-list.png">
     <link rel="stylesheet" href="style.css"></link>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="script.js" defer></script>
@@ -12,7 +13,7 @@
 <body>
     <div class="home-page" id="home-page-id">
         <div class="head">
-            <img src="./img/cv-logo.png">
+            <a href="https://www.mycourseville.com/"><img src="./img/cv-logo.png" id="cv-logo"></a>
             <div>
                 <p id="eng-name-info"></p>
                 <p id="thai-name-info"></p>
@@ -30,6 +31,9 @@
                     <option value="0">Before Due Date</option>
                     <option value="1">Show All</option>
                 </select>
+            </div>
+            <div class="loading-asmnt" id="loading-asmnt">
+                <p>Loading...</p>
             </div>
             <div class="assignments-pinned" id="assignments-pinned">
                 <h1>Pinned</h1>
