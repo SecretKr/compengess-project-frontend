@@ -1,4 +1,4 @@
-const backendIPAddress = "127.0.0.1:3000";
+const backendIPAddress = "34.238.198.3:3000";
 
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
